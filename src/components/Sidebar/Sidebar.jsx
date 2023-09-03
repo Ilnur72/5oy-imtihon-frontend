@@ -20,7 +20,7 @@ const Sidebar = () => {
     { img: dashboardIcon, link: "Dashboard", url: "/" },
     { img: userIcon, link: "User", url: "/users" },
     { img: guideIcon, link: "Guide", url: "/guides" },
-    { img: profileIcon, link: "Profile", url: `/profile/${user?.id}` },
+    { img: profileIcon, link: "Profile", url: `/profile/me` },
   ];
   return (
     <aside

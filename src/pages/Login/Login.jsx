@@ -34,7 +34,7 @@ const Login = () => {
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${data.data.token}`;
-        navigate(user.role === "employee" ? "/profile" : "/");
+        navigate(user.role === "employee" ? "/profile/me" : "/");
         toast.success("Siz tizimga muvaffaqiyatli kirdingiz.");
         reset();
       }

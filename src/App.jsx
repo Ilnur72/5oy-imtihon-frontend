@@ -1,3 +1,4 @@
+import jwtDecode from "jwt-decode";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
@@ -5,10 +6,10 @@ import { loadState } from "./Utils/storage";
 import MainLayout from "./layout/MainLayout";
 import Guides from "./pages/Guides/Guides";
 import Login from "./pages/Login/Login";
-import Profile from "./pages/Profile/Profile";
+import ProfileMe from "./pages/ProfileMe/ProfileMe";
 import User from "./pages/Stuff/User";
+import Profile from "./pages/Stuff/components/Profile";
 import { jwtToken } from "./store/jwtTokenSlice";
-import jwtDecode from "jwt-decode";
 
 function App() {
   const navigate = useNavigate();
@@ -27,7 +28,8 @@ function App() {
         <Route path="/" element={<MainLayout />}>
           <Route path="/login" element={<Login />} />
           <Route path="/users" element={<User />} />
-          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/profile/me" element={<ProfileMe />} />
+          <Route path="/users/:id" element={<Profile />} />
           <Route path="/guides" element={<Guides />} />
         </Route>
         <Route

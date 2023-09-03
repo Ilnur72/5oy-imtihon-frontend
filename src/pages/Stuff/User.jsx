@@ -24,9 +24,10 @@ import axios from "axios";
 import iconDelete from "../../assets/ActionIcon/delete.svg";
 import iconEdit from "../../assets/ActionIcon/edit.svg";
 import iconView from "../../assets/ActionIcon/view.svg";
-import CreateForm from "../../components/CostomForm/CreateForm";
-import UpdateForm from "../../components/CostomForm/UpdateForm";
+
 import { useNavigate } from "react-router-dom";
+import CreateForm from "./components/CreateForm";
+import UpdateForm from "./components/UpdateForm";
 
 const User = () => {
   const navigate = useNavigate();
@@ -210,7 +211,7 @@ const User = () => {
                 >
                   <IconButton
                     onClick={() => {
-                      navigate(`/profile/${item.id}`);
+                      navigate(`/users/${item.id}`);
                     }}
                     aria-label="view"
                     size="medium"

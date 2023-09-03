@@ -1,20 +1,18 @@
 import { Avatar, IconButton } from "@mui/material";
 import React from "react";
 import iconEdit from "../../assets/ActionIcon/edit.svg";
-import { useParams } from "react-router-dom";
 import { useAxios } from "../../hooks/useAxios";
-import UpdateForm from "../../components/CostomForm/UpdateForm";
+import UpdateMeForm from "./components/UpdateMeForm";
 
-const Profile = () => {
+const ProfileMe = () => {
   const [showUser, setShowUser] = React.useState({ isOpen: false });
-  const { id } = useParams();
   const {
-    data: { data, refetch },
-  } = useAxios({ url: `/users/${id}`, method: "get" });
+    data: { data }, refetch,
+  } = useAxios({ url: `/users/me`, method: "get" });
 
   return (
     <section className="" style={{ backgroundColor: "#fff" }}>
-      <UpdateForm
+      <UpdateMeForm
         showUser={{ ...showUser, data: data }}
         setShowUser={setShowUser}
         refetch={refetch}
@@ -72,4 +70,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ProfileMe;
