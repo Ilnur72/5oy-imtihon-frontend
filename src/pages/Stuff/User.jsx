@@ -281,7 +281,7 @@ const User = () => {
         <Stack spacing={2}>
           <Pagination
             onChange={(_, page) => setPage(page)}
-            count={data.pageInfo && Math.ceil(+data.pageInfo?.total / row)}
+            count={data.pageInfo && Math.ceil(data.pageInfo?.total / row)}
             variant="outlined"
             shape="rounded"
             page={page}

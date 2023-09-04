@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { openState } from "../../store/openStateSlice";
+import { openState, openStateGuide } from "../../store/openStateSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -31,6 +31,23 @@ const Header = () => {
             variant="contained"
           >
             Add new User <i className="fa-solid fa-user-plus fa-lg ml-2"></i>
+          </Button>
+          <Button
+            onClick={() => dispatch(openStateGuide(true))}
+            sx={{
+              display:
+                user?.role === "admin" && location.pathname == "/guides"
+                  ? "block"
+                  : "none",
+              background: "#4b48e2",
+              ":hover": { background: "#514eec" },
+              borderRadius: "70px",
+              paddingX: "20px",
+              paddingY: "10px",
+            }}
+            variant="contained"
+          >
+            Add new Guides <i className="fa-solid fa-scale-balanced"></i>
           </Button>
         </div>
       </div>

@@ -9,6 +9,7 @@ import dashboardIcon from "../../assets/SidebarIcon/dashboard.svg";
 import guideIcon from "../../assets/SidebarIcon/guides.svg";
 import profileIcon from "../../assets/SidebarIcon/profile.svg";
 import userIcon from "../../assets/SidebarIcon/users.svg";
+import nofiocationIcon from "../../assets/SidebarIcon/notification.svg";
 
 const forbiddenLinks = ["User", "Dashboard"];
 
@@ -21,6 +22,7 @@ const Sidebar = () => {
     { img: userIcon, link: "User", url: "/users" },
     { img: guideIcon, link: "Guide", url: "/guides" },
     { img: profileIcon, link: "Profile", url: `/profile/me` },
+    { img: nofiocationIcon, link: "Notification", url: `/notification` },
   ];
   return (
     <aside
@@ -50,7 +52,7 @@ const Sidebar = () => {
               to={item.url}
             >
               {({ isActive }) => (
-                <div className="flex items-center relative">
+                <div className="flex items-center  relative">
                   <IconButton
                     sx={{
                       width: "55px",
@@ -58,7 +60,7 @@ const Sidebar = () => {
                       borderRadius: "50%",
                       border: "2px solid #EAEEF4",
                       background: isActive ? "#514EF3" : "#fff",
-                      transition: "all 0.5s",
+                      transition: "all 0.4s",
                       zIndex: 1,
                       "&:hover": {
                         backgroundColor: isActive ? "#514EF3" : "#fff",
@@ -75,9 +77,9 @@ const Sidebar = () => {
                     />
                   </IconButton>
                   <strong
-                    style={{ transition: "0.4s all" }}
+                    style={{ transition: "0.3s all" }}
                     className={`text-xl absolute text-primary ${
-                      state ? "left-20" : "left-0 opacity-0"
+                      state ? "left-16" : "left-0 opacity-0"
                     }`}
                   >
                     {item.link}

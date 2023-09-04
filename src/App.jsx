@@ -10,6 +10,8 @@ import ProfileMe from "./pages/ProfileMe/ProfileMe";
 import User from "./pages/Stuff/User";
 import Profile from "./pages/Stuff/components/Profile";
 import { jwtToken } from "./store/jwtTokenSlice";
+import ShowGuide from "./pages/Guides/components/ShowGuide";
+import Notification from "./pages/Notification/Notification";
 
 function App() {
   const navigate = useNavigate();
@@ -31,6 +33,8 @@ function App() {
           <Route path="/profile/me" element={<ProfileMe />} />
           <Route path="/users/:id" element={<Profile />} />
           <Route path="/guides" element={<Guides />} />
+          <Route path="/guides/:guide_id" element={<ShowGuide />} />
+          <Route path="/notification" element={<Notification />} />
         </Route>
         <Route
           path="*"
