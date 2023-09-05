@@ -49,7 +49,6 @@ const User = () => {
     }`,
     method: "get",
   });
-
   async function showData(id) {
     const { data } = await axios.get(`/users/${id}`);
     setShowUser({ isOpen: true, ...data });

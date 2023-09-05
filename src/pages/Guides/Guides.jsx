@@ -43,7 +43,6 @@ const Guides = () => {
     url: `/guides?page[offset]=${page}&page[limit]=${row}&q=${searchAndSort.q}&sort[by]=${searchAndSort.by}&sort[order]=${searchAndSort.order}`,
     method: "get",
   });
-
   async function showData(id) {
     const { data } = await axios.get(`/guides/${id}`);
     setShowGuide({ isOpen: true, ...data });

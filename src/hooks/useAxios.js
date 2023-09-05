@@ -22,11 +22,11 @@ export const useAxios = ({ url = null, body = null, method = null }) => {
       setLoading(false);
     } catch (error) {
       console.log(error);
-      if (error.response.status === 403) {
+      if (error.response?.status === 403) {
         localStorage.removeItem("token");
         navigate("login");
       }
-      if (error.response.status === 401) navigate("/login");
+      if (error.response?.status === 401) navigate("/login");
       setError(error);
       setLoading(false);
     }

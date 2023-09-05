@@ -7,9 +7,9 @@ import UpdateMeForm from "./components/UpdateMeForm";
 const ProfileMe = () => {
   const [showUser, setShowUser] = React.useState({ isOpen: false });
   const {
-    data: { data }, refetch,
+    data: { data },
+    refetch,
   } = useAxios({ url: `/users/me`, method: "get" });
-
   return (
     <section className="" style={{ backgroundColor: "#fff" }}>
       <UpdateMeForm

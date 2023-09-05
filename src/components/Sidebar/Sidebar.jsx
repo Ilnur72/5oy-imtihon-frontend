@@ -7,9 +7,9 @@ import "./sidebar.scss";
 import { useSelector } from "react-redux";
 import dashboardIcon from "../../assets/SidebarIcon/dashboard.svg";
 import guideIcon from "../../assets/SidebarIcon/guides.svg";
+import nofiocationIcon from "../../assets/SidebarIcon/notification.svg";
 import profileIcon from "../../assets/SidebarIcon/profile.svg";
 import userIcon from "../../assets/SidebarIcon/users.svg";
-import nofiocationIcon from "../../assets/SidebarIcon/notification.svg";
 
 const forbiddenLinks = ["User", "Dashboard"];
 
@@ -57,8 +57,9 @@ const Sidebar = () => {
                     sx={{
                       width: "55px",
                       height: "55px",
+                      boxShadow:
+                        " 5px 5px 10px #c5c5c5, -5px -5px 10px #fbfbfb",
                       borderRadius: "50%",
-                      border: "2px solid #EAEEF4",
                       background: isActive ? "#514EF3" : "#fff",
                       transition: "all 0.4s",
                       zIndex: 1,
@@ -99,10 +100,11 @@ const Sidebar = () => {
       >
         <IconButton
           sx={{
+            background: "#fff",
+            boxShadow: " 5px 5px 10px #c5c5c5, -5px -5px 10px #fbfbfb",
             width: "55px",
             height: "55px",
             borderRadius: "50%",
-            border: "2px solid #EAEEF4",
             backgroundColor: "#fff",
             zIndex: 1,
           }}
@@ -113,9 +115,9 @@ const Sidebar = () => {
           ></i>
         </IconButton>
         <strong
-          style={{ transition: "0.4s all" }}
+          style={{ transition: "0.3s all" }}
           className={`text-xl absolute text-primary ${
-            state ? "left-20" : "left-0 opacity-0"
+            state ? "left-16" : "left-0 opacity-0"
           }`}
         >
           Logout

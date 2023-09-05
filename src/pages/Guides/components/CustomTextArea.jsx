@@ -21,7 +21,6 @@ export const StyledTextarea = styled(TextareaAutosize)(
       border-color: #514EF3;
     }
   
-    // firefox
     &:focus-visible {
       outline: 0;
     }

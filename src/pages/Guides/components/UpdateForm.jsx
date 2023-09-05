@@ -7,25 +7,24 @@ import { toast } from "react-toastify";
 import { StyledTextarea } from "./CustomTextArea";
 
 const UpdateForm = ({ showGuide, setShowGuide, refetch }) => {
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = React.useState(false);
   const [isNotify, setIsNotify] = React.useState(false);
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
   } = useForm();
 
   const submit = async (formData) => {
     try {
       await axios.patch(`/guides/${showGuide.data?._id}`, {
-        ...formData,
-        age: Number(formData.age),
+        ...formData, notify: isNotify
       });
 
       toast.success("Foydalanuvchi muvaffaqiyatli Tahrirlandi.");
       setIsNotify(false);
       setShowGuide({ isOpen: false });
+      setChecked(false)
       reset();
       refetch();
     } catch (error) {
@@ -79,7 +78,10 @@ const UpdateForm = ({ showGuide, setShowGuide, refetch }) => {
       <strong className="text-primary">Barchaga yuborilsinmi ?</strong>
     <Checkbox
           checked={checked}
-          onChange={(e) => setChecked(e.target.checked)}
+          onChange={(e) => {
+            setChecked(e.target.checked)
+            setIsNotify(e.target.checked)
+          }}
           inputProps={{ "aria-label": "controlled" }}
         />
     </div>
@@ -87,6 +89,7 @@ const UpdateForm = ({ showGuide, setShowGuide, refetch }) => {
           <Button
             onClick={() => {
               setShowGuide({ isOpen: false });
+              setChecked(false)
               setIsNotify(false);
               reset();
             }}
