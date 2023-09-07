@@ -89,7 +89,7 @@ const Sort = ({ searchAndSort, setSearchAndSort }) => {
         <IconButton onClick={cleaning} variant="outlined">
           <i
             className="fa-solid fa-filter-circle-xmark"
-            style={{ color: "#092C4C" }}
+            style={{ color: "#514EF3" }}
           ></i>
         </IconButton>
       </FormControl>

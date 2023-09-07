@@ -1,14 +1,19 @@
 import { Button } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { openState, openStateGuide } from "../../store/openStateSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.jwtToken);
+  const location = useLocation()
+  const { user } = useSelector((state) => state.userData);
   return (
-    <div style={{ background: "#F6FAFD" }} className=" sticky top-0 z-10">
-      <div className="container h-16 mx-auto text-primary text-2xl font-extrabold flex justify-between items-center">
+    <div
+      style={{ background: "#F6FAFD" }}
+      className="sticky top-0 z-10 shadow-md"
+    >
+      <div className="container mx-auto h-16 text-primary text-2xl font-extrabold flex justify-between items-center">
         <h2>
           {location.pathname == "/"
             ? "DASHBOARD"
@@ -51,7 +56,6 @@ const Header = () => {
           </Button>
         </div>
       </div>
-      <hr />
     </div>
   );
 };

@@ -3,17 +3,21 @@ import React from "react";
 import iconEdit from "../../assets/ActionIcon/edit.svg";
 import { useAxios } from "../../hooks/useAxios";
 import UpdateMeForm from "./components/UpdateMeForm";
+import { useDispatch } from "react-redux";
+import Loader from "../../components/Loader/Loader";
+import { userTodoGuide } from "../../store/userDataSlice";
 
 const ProfileMe = () => {
   const [showUser, setShowUser] = React.useState({ isOpen: false });
-  const {
-    data: { data },
-    refetch,
-  } = useAxios({ url: `/users/me`, method: "get" });
+  const { data, loading, refetch } = useAxios({
+    url: `/users/me`,
+    method: "get",
+  });
+  if (loading) return <Loader />;
   return (
-    <section className="" style={{ backgroundColor: "#fff" }}>
+    <section style={{ backgroundColor: "#fff" }}>
       <UpdateMeForm
-        showUser={{ ...showUser, data: data }}
+        showUser={{ ...showUser, data: data.data }}
         setShowUser={setShowUser}
         refetch={refetch}
       />
@@ -55,13 +59,19 @@ const ProfileMe = () => {
               <strong>Age:</strong>
               <strong>Username:</strong>
               <strong>Role:</strong>
+              <strong>Total Guides:</strong>
+              <strong>Todo Guides:</strong>
+              <strong>Read Guides:</strong>
             </div>
             <div className="flex flex-col gap-4 text-primary">
-              <strong>{data?.first_name}</strong>
-              <strong>{data?.last_name}</strong>
-              <strong>{data?.age}</strong>
-              <strong>{data?.username}</strong>
-              <strong>{data?.role}</strong>
+              <strong>{data.data?.first_name}</strong>
+              <strong>{data.data?.last_name}</strong>
+              <strong>{data.data?.age}</strong>
+              <strong>{data.data?.username}</strong>
+              <strong>{data.data?.role}</strong>
+              <strong>{data.data?.total_guides}</strong>
+              <strong>{data.data?.todo_guides}</strong>
+              <strong>{data.data?.read_guides}</strong>
             </div>
           </div>
         </div>

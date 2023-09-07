@@ -1,12 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import openStateSlice from "./openStateSlice.js";
-import jwtTokenSlice from "./jwtTokenSlice.js";
+import userDataSlice from "./userDataSlice.js";
 
 export const store = configureStore({
   reducer: {
     openState: openStateSlice,
-    openStateGuide: openStateSlice,
-    jwtToken: jwtTokenSlice,
+    userData: userDataSlice,
   },
 });

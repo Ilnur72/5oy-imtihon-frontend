@@ -1,24 +1,32 @@
 import React from "react";
 import "./custom-button.scss";
+import axios from "axios";
 
-const CustomButton = () => {
+const CustomButton = ({ userGuideId, guideCompleted, refetch }) => {
   const [isAnimating, setIsAnimating] = React.useState(false);
 
-  const animateButton = () => {
+  const animateButton = async () => {
     setIsAnimating(true);
     setTimeout(() => {
       setIsAnimating(false);
     }, 1200);
+    await axios.post(`user-guides/${userGuideId}/read`);
+    refetch()
   };
 
   return (
     <div className="text-center">
       <button
+        disabled={guideCompleted}
         className={`btn submit-habit ${isAnimating ? "onclick" : ""}`}
         id="submit-habit"
         onClick={animateButton}
       >
-        <span className="submit-habit-label text-white">Completed</span>
+        {!isAnimating ? (
+          <span className="text-white">
+            {guideCompleted ? "Completed" : "Not Completed"}
+          </span>
+        ) : null}
         <span
           className={`checkmark ${
             isAnimating ? "hide flex justify-center" : ""

@@ -1,5 +1,4 @@
 import axios from "axios";
-import jwtDecode from "jwt-decode";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -29,12 +28,11 @@ const Login = () => {
     try {
       const { data } = await axios.post("/users/login", dataValue);
       saveState("token", data.data.token);
-      const { user } = jwtDecode(data.data.token);
       if (data.data.token) {
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${data.data.token}`;
-        navigate(user.role === "employee" ? "/profile/me" : "/");
+        navigate("/profile/me");
         toast.success("Siz tizimga muvaffaqiyatli kirdingiz.");
         reset();
       }

@@ -14,11 +14,11 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import axios from "axios";
 import React from "react";
+import Loader from "../../components/Loader/Loader";
 import { useAxios } from "../../hooks/useAxios";
 import Sort from "./components/sort";
-import Loader from "../../components/Loader/Loader";
-import axios from "axios";
 
 //img
 import iconDelete from "../../assets/ActionIcon/delete.svg";
@@ -53,9 +53,10 @@ const User = () => {
     const { data } = await axios.get(`/users/${id}`);
     setShowUser({ isOpen: true, ...data });
   }
-
+  React.useEffect(() => {
+    if (data.data?.length === 0 && page !== 1) setPage(page - 1);
+  }, [data]);
   if (loading) return <Loader />;
-
   return (
     <>
       <CreateForm refetch={refetch} />
@@ -64,11 +65,11 @@ const User = () => {
         setShowUser={setShowUser}
         refetch={refetch}
       />
-      <div className="flex items-center justify-between mt-1">
+      <div className="flex items-center justify-between pt-2">
         <strong className="font-bold text-base text-primary">
           Total: {data.pageInfo?.total} user
         </strong>
-        <div className="flex items-center mb-2">
+        <div className="flex items-center pb-2">
           <Sort
             filterAndSort={filterAndSort}
             setFilterAndSort={setFilterAndSort}
@@ -138,7 +139,7 @@ const User = () => {
                     fontSize: 16,
                     fontWeight: 600,
                     color: "#092C4C",
-                    paddingY: 0.7,
+                    paddingY: 0.8,
                   }}
                   align="left"
                 >
@@ -149,7 +150,7 @@ const User = () => {
                     fontSize: 16,
                     fontWeight: 600,
                     color: "#092C4C",
-                    paddingY: 0.7,
+                    paddingY: 0.8,
                   }}
                   align="center"
                 >
@@ -160,7 +161,7 @@ const User = () => {
                     fontSize: 16,
                     fontWeight: 600,
                     color: "#092C4C",
-                    paddingY: 0.7,
+                    paddingY: 0.8,
                   }}
                   align="center"
                 >
@@ -171,7 +172,7 @@ const User = () => {
                     fontSize: 16,
                     fontWeight: 600,
                     color: "#092C4C",
-                    paddingY: 0.7,
+                    paddingY: 0.8,
                   }}
                   align="center"
                 >
@@ -182,7 +183,7 @@ const User = () => {
                     fontSize: 16,
                     fontWeight: 600,
                     color: "#092C4C",
-                    paddingY: 0.7,
+                    paddingY: 0.8,
                   }}
                   align="center"
                 >
@@ -193,7 +194,7 @@ const User = () => {
                     fontSize: 16,
                     fontWeight: 600,
                     color: "#092C4C",
-                    paddingY: 0.7,
+                    paddingY: 0.8,
                   }}
                   align="center"
                 >
@@ -204,7 +205,7 @@ const User = () => {
                     fontSize: 14,
                     fontWeight: 600,
                     color: "#092C4C",
-                    paddingY: 0.7,
+                    paddingY: 0.8,
                   }}
                   align="center"
                 >

@@ -4,8 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import backIcon from "../../../assets/back.svg";
 import { useAxios } from "../../../hooks/useAxios";
 import UsersListModal from "./UsersListModal";
+import { useSelector } from "react-redux";
 
 const ShowGuide = () => {
+  const { user } = useSelector((state) => state.jwtToken);
   const navigate = useNavigate();
   const [usersList, setUsersList] = React.useState({ isOpen: false });
   const { guide_id } = useParams();
@@ -23,12 +25,13 @@ const ShowGuide = () => {
       />
       <div className="py-4">
         <div className="flex justify-between items-center pb-4">
-          <strong className="text-lg text-primary">
+          <strong className="text-lg text-primary py-4">
             revisions: {data?.revisions} ta user ga biriktirilgan
           </strong>
           <Button
             onClick={() => setUsersList({ isOpen: true })}
             sx={{
+              display: user?.role === "admin" ? "block" : "none",
               background: "#4b48e2",
               ":hover": { background: "#514eec" },
               borderRadius: "70px",

@@ -10,7 +10,7 @@ const MainLayout = () => {
   return (
     <div>
       {shouldHidePage ? null : <Header />}
-      <main className="container mx-auto flex">
+      <main className="container mx-auto flex ">
         {shouldHidePage ? null : <Sidebar />}
         <div className="w-full mx-auto pl-5">
           <Outlet />

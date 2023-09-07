@@ -20,15 +20,15 @@
 
 .submit-habit {
   width: 140px;
-  height: 47px;
+  height: 35px;
   background-color: #514ef3;
 }
 
 .onclick {
   transition: width 0.4s ease-in-out, box-shadow 1.5s ease,
     background-color 0.2s linear 0.4s;
-  width: 47px;
-  font-size: 0;
+  width: 35px;
+  height: 35px;
   padding: 0;
 }
 .checkmark {

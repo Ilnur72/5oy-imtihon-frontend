@@ -1,11 +1,9 @@
-import { IconButton } from "@mui/material";
+import { Badge, IconButton } from "@mui/material";
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import "./sidebar.scss";
 
 //img
 import { useSelector } from "react-redux";
-import dashboardIcon from "../../assets/SidebarIcon/dashboard.svg";
 import guideIcon from "../../assets/SidebarIcon/guides.svg";
 import nofiocationIcon from "../../assets/SidebarIcon/notification.svg";
 import profileIcon from "../../assets/SidebarIcon/profile.svg";
@@ -16,28 +14,27 @@ const forbiddenLinks = ["User", "Dashboard"];
 const Sidebar = () => {
   const navigate = useNavigate();
   const [state, setstate] = React.useState(false);
-  const { user } = useSelector((state) => state.jwtToken);
+  const { user, totalGuide } = useSelector((state) => state.userData);
   let links = [
-    { img: dashboardIcon, link: "Dashboard", url: "/" },
+    { img: profileIcon, link: "Profile", url: `/profile/me` },
     { img: userIcon, link: "User", url: "/users" },
     { img: guideIcon, link: "Guide", url: "/guides" },
-    { img: profileIcon, link: "Profile", url: `/profile/me` },
     { img: nofiocationIcon, link: "Notification", url: `/notification` },
   ];
   return (
     <aside
       style={{
-        width: state ? "15%" : "5.5%",
+        width: state ? "220px" : "80px",
         height: "91vh",
         border: "none",
-        top: "62px",
+        top: "65px",
         borderLeft: "none",
         borderRight: "2px solid #EAEEF4",
         transition: "0.4s all",
       }}
       onMouseEnter={() => setstate(true)}
       onMouseLeave={() => setstate(false)}
-      className="sidebar sticky left-0 pt-4 flex flex-col justify-between items-start gap-4 border"
+      className="sticky left-0 pt-4 flex flex-col justify-between items-start gap-4"
     >
       <div className="flex flex-col gap-4">
         {links.map((item, index) => {
@@ -53,30 +50,45 @@ const Sidebar = () => {
             >
               {({ isActive }) => (
                 <div className="flex items-center  relative">
-                  <IconButton
+                  <Badge
                     sx={{
-                      width: "55px",
-                      height: "55px",
-                      boxShadow:
-                        " 5px 5px 10px #c5c5c5, -5px -5px 10px #fbfbfb",
-                      borderRadius: "50%",
-                      background: isActive ? "#514EF3" : "#fff",
-                      transition: "all 0.4s",
-                      zIndex: 1,
-                      "&:hover": {
-                        backgroundColor: isActive ? "#514EF3" : "#fff",
+                      "& .MuiBadge-badge": {
+                        color: "#fff",
+                        backgroundColor: "#514EF3",
+                        top: 5,
+                        right: 3,
                       },
                     }}
+                    color="info"
+                    badgeContent={
+                      item.link === "Notification" ? totalGuide : null
+                    }
                   >
-                    <img
-                      style={{
-                        filter: isActive ? "brightness(2000%)" : null,
+                    <IconButton
+                      sx={{
+                        width: "55px",
+                        height: "55px",
+                        boxShadow:
+                          " 5px 5px 10px #c5c5c5, -5px -5px 10px #fbfbfb",
+                        borderRadius: "50%",
+                        background: isActive ? "#514EF3" : "#fff",
+                        transition: "all 0.4s",
+                        zIndex: 1,
+                        "&:hover": {
+                          backgroundColor: isActive ? "#514EF3" : "#fff",
+                        },
                       }}
-                      className="fill-white "
-                      src={item.img}
-                      alt=""
-                    />
-                  </IconButton>
+                    >
+                      <img
+                        style={{
+                          filter: isActive ? "brightness(2000%)" : null,
+                        }}
+                        className="fill-white "
+                        src={item.img}
+                        alt=""
+                      />
+                    </IconButton>
+                  </Badge>
                   <strong
                     style={{ transition: "0.3s all" }}
                     className={`text-xl absolute text-primary ${
@@ -96,7 +108,7 @@ const Sidebar = () => {
           localStorage.removeItem("token");
           navigate("/login");
         }}
-        className="flex items-center mb-5"
+        className="flex items-center pb-4"
       >
         <IconButton
           sx={{

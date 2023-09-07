@@ -1,17 +1,16 @@
-import { Button, TextField } from "@mui/material";
+import { Button, Checkbox, TextField } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { openState, openStateGuide } from "../../../store/openStateSlice";
+import { openStateGuide } from "../../../store/openStateSlice";
 import { StyledTextarea } from "./CustomTextArea";
 
 const CreateForm = ({ refetch }) => {
   const dispatch = useDispatch();
-  const { isOpenGuide } = useSelector((state) => state.openStateGuide);
-
+  const { isOpenGuide } = useSelector((state) => state.openState);
   const { register, handleSubmit, reset } = useForm();
 
   const submit = async (formData) => {
@@ -22,15 +21,7 @@ const CreateForm = ({ refetch }) => {
       reset();
       refetch();
     } catch (error) {
-    toast.error(err.response?.data.message)
-      // if (error.response?.status == 502) {
-      //   toast.error(error.response.data.message);
-      // }
-      // if (error.response.status == 400) {
-      //   error.response?.data.message.map((err) => {
-      //     toast.error(err);
-      //   });
-      // }
+      toast.error(err.response?.data.message);
     }
   };
 
@@ -72,6 +63,13 @@ const CreateForm = ({ refetch }) => {
           minRows={2}
           placeholder="Content"
         />
+        <div>
+          <strong className="text-primary">Barchaga yuborilsinmi ?</strong>
+          <Checkbox
+            {...register("notify")}
+            inputProps={{ "aria-label": "controlled" }}
+          />
+        </div>
         <div className="flex justify-end gap-3">
           <Button
             onClick={() => {

@@ -16,19 +16,20 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import { useAxios } from "../../hooks/useAxios";
+import CreateForm from "./components/CreateForm";
+import UpdateForm from "./components/UpdateForm";
 import Sort from "./components/sort";
 
 //img
 import iconEdit from "../../assets/ActionIcon/edit.svg";
 import iconView from "../../assets/ActionIcon/view.svg";
-
-import { useNavigate } from "react-router-dom";
-import CreateForm from "./components/CreateForm";
-import UpdateForm from "./components/UpdateForm";
+import { useSelector } from "react-redux";
 
 const Guides = () => {
+  const {user} = useSelector((state) => state.userData)
   const navigate = useNavigate();
   const [showGuide, setShowGuide] = React.useState({ isOpen: false });
 
@@ -47,7 +48,9 @@ const Guides = () => {
     const { data } = await axios.get(`/guides/${id}`);
     setShowGuide({ isOpen: true, ...data });
   }
-
+  React.useEffect(() => {
+    if (data.data?.length === 0 && page !== 1) setPage(page - 1);
+  }, [data]);
   if (loading) return <Loader />;
 
   return (
@@ -58,16 +61,15 @@ const Guides = () => {
         setShowGuide={setShowGuide}
         refetch={refetch}
       />
-      <div className="flex items-center justify-between mt-1">
+      <div className="flex items-center justify-between pt-2">
         <strong className="font-bold text-base text-primary">
           Total: {data.pageInfo?.total} guide
         </strong>
-        <div className="flex items-center mb-2">
+        <div className="flex items-center pb-2">
           <Sort
             searchAndSort={searchAndSort}
             setSearchAndSort={setSearchAndSort}
           />
-          {/* <div className="select-auto"></div> */}
         </div>
       </div>
 
@@ -114,7 +116,7 @@ const Guides = () => {
                     fontSize: 16,
                     fontWeight: 600,
                     color: "#092C4C",
-                    paddingY: 0.7,
+                    paddingY: 0.8,
                   }}
                   align="left"
                 >
@@ -125,7 +127,7 @@ const Guides = () => {
                     fontSize: 16,
                     fontWeight: 600,
                     color: "#092C4C",
-                    paddingY: 0.7,
+                    paddingY: 0.8,
                   }}
                   align="center"
                 >
@@ -136,7 +138,7 @@ const Guides = () => {
                     fontSize: 16,
                     fontWeight: 600,
                     color: "#092C4C",
-                    paddingY: 0.7,
+                    paddingY: 0.8,
                   }}
                   align="center"
                 >
@@ -148,7 +150,7 @@ const Guides = () => {
                     fontSize: 14,
                     fontWeight: 600,
                     color: "#092C4C",
-                    paddingY: 0.7,
+                    paddingY: 0.8,
                   }}
                   align="center"
                 >
@@ -179,6 +181,7 @@ const Guides = () => {
                     aria-label="edit"
                     size="medium"
                     sx={{
+                      display: user?.role === "admin" ? null : "none",
                       mx: 1,
                       width: "35px",
                       height: "35px",
