@@ -1,15 +1,15 @@
 import { Button } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import backIcon from "../../../assets/back.svg";
 import { useAxios } from "../../../hooks/useAxios";
 import UsersListModal from "./UsersListModal";
-import { useSelector } from "react-redux";
 
 const ShowGuide = () => {
-  const { user } = useSelector((state) => state.jwtToken);
+  const { user } = useSelector((state) => state.userData);
   const navigate = useNavigate();
-  const [usersList, setUsersList] = React.useState({ isOpen: false });
+  const [isOpen, setIsOpen] = React.useState(false);
   const { guide_id } = useParams();
   const {
     data: { data },
@@ -17,19 +17,21 @@ const ShowGuide = () => {
   } = useAxios({ url: `/guides/${guide_id}`, method: "get" });
   return (
     <section className="p-4" style={{ backgroundColor: "#fff" }}>
-      <UsersListModal
-        guideId={guide_id}
-        usersList={{ ...usersList }}
-        setUsersList={setUsersList}
-        refetch={refetch}
-      />
+      {user?.role === "admin" ? (
+        <UsersListModal
+          guideId={guide_id}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          refetch={refetch}
+        />
+      ) : null}
       <div className="py-4">
         <div className="flex justify-between items-center pb-4">
           <strong className="text-lg text-primary py-4">
             revisions: {data?.revisions} ta user ga biriktirilgan
           </strong>
           <Button
-            onClick={() => setUsersList({ isOpen: true })}
+            onClick={() => setIsOpen(true)}
             sx={{
               display: user?.role === "admin" ? "block" : "none",
               background: "#4b48e2",

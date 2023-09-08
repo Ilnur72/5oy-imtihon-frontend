@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import { useAxios } from "../../hooks/useAxios";
@@ -26,10 +27,9 @@ import Sort from "./components/sort";
 //img
 import iconEdit from "../../assets/ActionIcon/edit.svg";
 import iconView from "../../assets/ActionIcon/view.svg";
-import { useSelector } from "react-redux";
 
 const Guides = () => {
-  const {user} = useSelector((state) => state.userData)
+  const { user } = useSelector((state) => state.userData);
   const navigate = useNavigate();
   const [showGuide, setShowGuide] = React.useState({ isOpen: false });
 

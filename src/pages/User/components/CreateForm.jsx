@@ -32,7 +32,7 @@ const CreateForm = ({ refetch }) => {
 
   const submit = async (formData) => {
     try {
-      const data = await axios.post("/users", {
+      await axios.post("/users", {
         ...formData,
         age: Number(formData.age),
       });

@@ -17,7 +17,6 @@ import React from "react";
 import Loader from "../../components/Loader/Loader";
 import { useAxios } from "../../hooks/useAxios";
 import CustomButton from "./components/CustomButton/CustomButton";
-import userDataSlice from "../../store/userDataSlice";
 
 const SelectStyle = {
   width: 200,
@@ -42,7 +41,6 @@ const Notification = () => {
     method: "get",
   });
   React.useEffect(() => {
-
     if (data.data?.length === 0 && page !== 1) setPage(page - 1);
   }, [data]);
   if (loading) return <Loader />;

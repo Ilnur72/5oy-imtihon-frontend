@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import CheckBox from "./Checkbox";
 let notifyUser = [];
 
-const UsersListModal = ({ guideId, usersList, setUsersList, refetch }) => {
+const UsersListModal = ({ guideId, isOpen, setIsOpen, refetch }) => {
   const listInnerRef = useRef();
   const [currPage, setCurrPage] = React.useState(1);
   const [prevPage, setPrevPage] = React.useState(0);
@@ -21,7 +21,7 @@ const UsersListModal = ({ guideId, usersList, setUsersList, refetch }) => {
         user_id: notifyUser,
       });
       toast.success("Ushbu Guide belgilangan foydalanuvchilarga yuborildi.");
-      setUsersList({ isOpen: false });
+      setIsOpen(false);
       notifyUser = [];
       refetch();
     } catch (error) {
@@ -66,7 +66,7 @@ const UsersListModal = ({ guideId, usersList, setUsersList, refetch }) => {
   return (
     <Modal
       hideBackdrop={false}
-      open={usersList.isOpen}
+      open={isOpen}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -94,7 +94,7 @@ const UsersListModal = ({ guideId, usersList, setUsersList, refetch }) => {
         <div className="flex justify-end gap-3">
           <Button
             onClick={() => {
-              setUsersList({ isOpen: false });
+              setIsOpen(false);
             }}
             color="inherit"
             variant="contained"

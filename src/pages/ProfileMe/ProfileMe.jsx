@@ -1,11 +1,9 @@
 import { Avatar, IconButton } from "@mui/material";
 import React from "react";
 import iconEdit from "../../assets/ActionIcon/edit.svg";
+import Loader from "../../components/Loader/Loader";
 import { useAxios } from "../../hooks/useAxios";
 import UpdateMeForm from "./components/UpdateMeForm";
-import { useDispatch } from "react-redux";
-import Loader from "../../components/Loader/Loader";
-import { userTodoGuide } from "../../store/userDataSlice";
 
 const ProfileMe = () => {
   const [showUser, setShowUser] = React.useState({ isOpen: false });
@@ -27,7 +25,7 @@ const ProfileMe = () => {
             <Avatar sx={{ width: 200, height: 200 }} />
             <div>
               <strong className="text-2xl text-primary">
-                {data?.first_name} {data?.last_name}
+                {data.data?.first_name} {data.data?.last_name}
               </strong>
             </div>
             <IconButton

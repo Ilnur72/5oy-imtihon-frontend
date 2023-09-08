@@ -25,10 +25,9 @@ const UpdateForm = ({ showUser, setShowUser, refetch }) => {
     reset,
     formState: { errors },
   } = useForm();
-
   const submit = async (formData) => {
     try {
-      await axios.patch(`/users/${showUser.data?.id}`, {
+      await axios.patch(`/users/${showUser.data?._id}`, {
         ...formData,
         age: Number(formData.age),
       });

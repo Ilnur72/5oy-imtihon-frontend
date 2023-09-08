@@ -16,18 +16,17 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import { useAxios } from "../../hooks/useAxios";
+import CreateForm from "./components/CreateForm";
+import UpdateForm from "./components/UpdateForm";
 import Sort from "./components/sort";
 
 //img
 import iconDelete from "../../assets/ActionIcon/delete.svg";
 import iconEdit from "../../assets/ActionIcon/edit.svg";
 import iconView from "../../assets/ActionIcon/view.svg";
-
-import { useNavigate } from "react-router-dom";
-import CreateForm from "./components/CreateForm";
-import UpdateForm from "./components/UpdateForm";
 
 const User = () => {
   const navigate = useNavigate();
@@ -41,6 +40,7 @@ const User = () => {
   });
   const [row, setRow] = React.useState(10);
   const [page, setPage] = React.useState(1);
+
   const { data, loading, refetch } = useAxios({
     url: `/users?page[offset]=${page}&page[limit]=${row}&q=${
       filterAndSort.q
@@ -74,7 +74,6 @@ const User = () => {
             filterAndSort={filterAndSort}
             setFilterAndSort={setFilterAndSort}
           />
-          {/* <div className="select-auto"></div> */}
         </div>
       </div>
 

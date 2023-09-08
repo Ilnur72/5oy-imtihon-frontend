@@ -11,7 +11,6 @@ export const useAxios = ({ url = null, body = null, method = null }) => {
   const [trigger, setTrigger] = React.useState(0);
 
   const refetch = () => {
-    // setLoading(true);
     setTrigger(Date.now());
   };
 
@@ -21,7 +20,6 @@ export const useAxios = ({ url = null, body = null, method = null }) => {
       setData(data);
       setLoading(false);
     } catch (error) {
-      console.log(error);
       if (error.response?.status === 403) {
         localStorage.removeItem("token");
         navigate("login");

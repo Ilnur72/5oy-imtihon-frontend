@@ -6,7 +6,7 @@ import { openState, openStateGuide } from "../../store/openStateSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const location = useLocation()
+  const location = useLocation();
   const { user } = useSelector((state) => state.userData);
   return (
     <div

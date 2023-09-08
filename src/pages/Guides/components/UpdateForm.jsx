@@ -11,13 +11,9 @@ const UpdateForm = ({ showGuide, setShowGuide, refetch }) => {
 
   const submit = async (formData) => {
     try {
-      await axios.patch(`/guides/${showGuide.data?._id}`, {
-        ...formData,
-        notify: isNotify,
-      });
+      await axios.patch(`/guides/${showGuide.data?._id}`, formData);
 
       toast.success("Foydalanuvchi muvaffaqiyatli Tahrirlandi.");
-      setIsNotify(false);
       setShowGuide({ isOpen: false });
       reset();
       refetch();
@@ -74,12 +70,11 @@ const UpdateForm = ({ showGuide, setShowGuide, refetch }) => {
             {...register("notify")}
             inputProps={{ "aria-label": "controlled" }}
           />
-        </div>  
+        </div>
         <div className="flex justify-end gap-3">
           <Button
             onClick={() => {
               setShowGuide({ isOpen: false });
-              setIsNotify(false);
               reset();
             }}
             color="inherit"
