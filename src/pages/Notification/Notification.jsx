@@ -30,7 +30,7 @@ const SelectStyle = {
   },
 };
 
-const Notification = () => {
+const Notification = ({refetchData}) => {
   const [filter, setFilter] = React.useState("all");
   const [row, setRow] = React.useState(5);
   const [page, setPage] = React.useState(1);
@@ -152,6 +152,7 @@ const Notification = () => {
                     userGuideId={item._id}
                     guideCompleted={item.completed}
                     refetch={refetch}
+                    refetchData={refetchData}
                   />
                 </TableCell>
               </TableRow>

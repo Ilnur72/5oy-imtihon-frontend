@@ -10,9 +10,13 @@ export const useAxios = ({ url = null, body = null, method = null }) => {
 
   const [trigger, setTrigger] = React.useState(0);
 
-  const refetch = () => {
+  // const refetch = () => {
+  //   setTrigger(Date.now());
+  // };
+
+  function refetch() {
     setTrigger(Date.now());
-  };
+  }
 
   const fetChData = async () => {
     try {

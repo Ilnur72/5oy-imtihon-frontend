@@ -6,7 +6,7 @@ import backIcon from "../../../assets/back.svg";
 import { useAxios } from "../../../hooks/useAxios";
 import UsersListModal from "./UsersListModal";
 
-const ShowGuide = () => {
+const ShowGuide = ({ refetchData }) => {
   const { user } = useSelector((state) => state.userData);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = React.useState(false);
@@ -23,6 +23,7 @@ const ShowGuide = () => {
           isOpen={isOpen}
           setIsOpen={setIsOpen}
           refetch={refetch}
+          refetchData={refetchData}
         />
       ) : null}
       <div className="py-4">

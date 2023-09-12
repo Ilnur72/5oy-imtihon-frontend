@@ -6,7 +6,13 @@ import { toast } from "react-toastify";
 import CheckBox from "./Checkbox";
 let notifyUser = [];
 
-const UsersListModal = ({ guideId, isOpen, setIsOpen, refetch }) => {
+const UsersListModal = ({
+  guideId,
+  isOpen,
+  setIsOpen,
+  refetch,
+  refetchData,
+}) => {
   const listInnerRef = useRef();
   const [currPage, setCurrPage] = React.useState(1);
   const [prevPage, setPrevPage] = React.useState(0);
@@ -24,6 +30,7 @@ const UsersListModal = ({ guideId, isOpen, setIsOpen, refetch }) => {
       setIsOpen(false);
       notifyUser = [];
       refetch();
+      refetchData();
     } catch (error) {
       if (error.response?.status == 400) {
         error.response?.data.message.map((err) => {

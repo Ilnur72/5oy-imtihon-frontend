@@ -16,7 +16,7 @@ import { saveState } from "../../Utils/storage";
 import Visibility from "../../assets/visibility.svg";
 import VisibilityOff from "../../assets/visibilityOff.svg";
 
-const Login = () => {
+const Login = ({ refetchData }) => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -34,6 +34,7 @@ const Login = () => {
         navigate("/profile/me");
         toast.success("Siz tizimga muvaffaqiyatli kirdingiz.");
         reset();
+        refetchData();
       }
     } catch (error) {
       toast.error(error.response.data.message);

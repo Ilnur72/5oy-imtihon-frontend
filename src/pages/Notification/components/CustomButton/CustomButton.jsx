@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import "./custom-button.scss";
 
-const CustomButton = ({ userGuideId, guideCompleted, refetch }) => {
+const CustomButton = ({ userGuideId, guideCompleted, refetch, refetchData }) => {
   const [isAnimating, setIsAnimating] = React.useState(false);
 
   const animateButton = async () => {
@@ -12,6 +12,7 @@ const CustomButton = ({ userGuideId, guideCompleted, refetch }) => {
     }, 1200);
     await axios.post(`user-guides/${userGuideId}/read`);
     refetch();
+    refetchData()
   };
 
   return (
